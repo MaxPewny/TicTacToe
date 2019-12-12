@@ -1,0 +1,11 @@
+C:\Users\Maximilian.Pewny\Documents\TicTacToe\TicTacToe_Solution\bin\Debug\netcoreapp3.1\TicTacToe_Solution.exe
+C:\Users\Maximilian.Pewny\Documents\TicTacToe\TicTacToe_Solution\bin\Debug\netcoreapp3.1\TicTacToe_Solution.deps.json
+C:\Users\Maximilian.Pewny\Documents\TicTacToe\TicTacToe_Solution\bin\Debug\netcoreapp3.1\TicTacToe_Solution.runtimeconfig.json
+C:\Users\Maximilian.Pewny\Documents\TicTacToe\TicTacToe_Solution\bin\Debug\netcoreapp3.1\TicTacToe_Solution.runtimeconfig.dev.json
+C:\Users\Maximilian.Pewny\Documents\TicTacToe\TicTacToe_Solution\bin\Debug\netcoreapp3.1\TicTacToe_Solution.dll
+C:\Users\Maximilian.Pewny\Documents\TicTacToe\TicTacToe_Solution\bin\Debug\netcoreapp3.1\TicTacToe_Solution.pdb
+C:\Users\Maximilian.Pewny\Documents\TicTacToe\TicTacToe_Solution\obj\Debug\netcoreapp3.1\TicTacToe_Solution.csprojAssemblyReference.cache
+C:\Users\Maximilian.Pewny\Documents\TicTacToe\TicTacToe_Solution\obj\Debug\netcoreapp3.1\TicTacToe_Solution.AssemblyInfoInputs.cache
+C:\Users\Maximilian.Pewny\Documents\TicTacToe\TicTacToe_Solution\obj\Debug\netcoreapp3.1\TicTacToe_Solution.AssemblyInfo.cs
+C:\Users\Maximilian.Pewny\Documents\TicTacToe\TicTacToe_Solution\obj\Debug\netcoreapp3.1\TicTacToe_Solution.dll
+C:\Users\Maximilian.Pewny\Documents\TicTacToe\TicTacToe_Solution\obj\Debug\netcoreapp3.1\TicTacToe_Solution.pdb

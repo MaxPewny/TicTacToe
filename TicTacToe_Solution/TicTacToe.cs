@@ -4,21 +4,24 @@ using System.Text;
 
 namespace TicTacToe_Solution
 {
-    public class TicTacToe
+    public class TicTacToe : IGame
     {
         private const int width = 3;
         private const int height = 3;
-        private const int size = width * height;
 
-        private Field[] fields = new Field[size];
+        private Field[,] fields = new Field[width, height];
 
         private Field actPlayer = Field.CROSS;
 
         public TicTacToe() 
         {
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < width; i++)
             {
-                fields[i] = Field.EMPTY;
+                for (int j = 0; j < height; j++)
+                {
+                    fields[i,j] = Field.EMPTY;
+
+                }
             }
         }
 
@@ -39,20 +42,11 @@ namespace TicTacToe_Solution
         {
             Field mWinner = Field.CROSS;
 
-            int mMoveCount = 0;
-
-            for (int i = 0; i < size; i++)
-            {
-                if (fields[i] == Field.EMPTY)
-                {
-                    ++mMoveCount;
-                }
-            }
             for (int i = 0; i < 2; i++)
             {
                 for (int j = 0; j < height; j++)
                 {
-                    if (fields[j*3] == mWinner && fields[j*3+1] == mWinner && fields[j*3+2] == mWinner)
+                    if (fields[j,0] == mWinner && fields[j,1] == mWinner && fields[j,2] == mWinner)
                     {
                         if (mWinner == Field.CROSS)
                         {
@@ -67,7 +61,7 @@ namespace TicTacToe_Solution
 
                 for (int j = 0; j < width; j++)
                 {
-                    if (fields[j] == mWinner && fields[j + 3] == mWinner && fields[j + 6] == mWinner)
+                    if (fields[0,j] == mWinner && fields[1,j] == mWinner && fields[2,j] == mWinner)
                     {
                         if (mWinner == Field.CROSS)
                         {
@@ -80,7 +74,7 @@ namespace TicTacToe_Solution
                     }
                 }
 
-                if (fields[0] == mWinner && fields[4] == mWinner && fields[8] == mWinner)
+                if (fields[0,0] == mWinner && fields[1,1] == mWinner && fields[2,2] == mWinner)
                 {
                     if (mWinner == Field.CROSS)
                     {
@@ -92,7 +86,7 @@ namespace TicTacToe_Solution
                     }
                 }
 
-                if (fields[2] == mWinner && fields[4] == mWinner && fields[6] == mWinner)
+                if (fields[2,0] == mWinner && fields[1,1] == mWinner && fields[0,2] == mWinner)
                 {
                     if (mWinner == Field.CROSS)
                     {
@@ -107,7 +101,7 @@ namespace TicTacToe_Solution
                 mWinner = Field.CROSS;
             }
 
-            if (GetMoves().Length > 0)
+            if (GetMoves().Count > 0)
             {
                 return Winner.NO_WINNER;
             }
@@ -122,31 +116,20 @@ namespace TicTacToe_Solution
             return actPlayer;
         }
 
-        public int[] GetMoves() 
+        public IList<Move> GetMoves() 
         {
-            int mMoveCount = 0;
+            IList<Move> mMove = new List<Move>();
 
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < width; i++)
             {
-                if (fields[i] == Field.EMPTY)
+                for (int j = 0; j < height; j++)
                 {
-                    ++mMoveCount;
-                }
-            }
-
-            int[] mMove = new int[mMoveCount];
-
-            for (int i = 0; i < size; i++)
-            {
-                if (fields[i] == Field.EMPTY)
-                {
-                    --mMoveCount;
-                    mMove[mMoveCount] = i;
+                    if (fields[i,j] == Field.EMPTY)
+                    {
+                        mMove.Add(new Move(i,j));
                     
-                }
-                if (mMoveCount < 0)
-                {
-                    break;
+                    }
+
                 }
             }
 
@@ -158,23 +141,28 @@ namespace TicTacToe_Solution
         public String OutputToString()
         {
             System.Text.StringBuilder mOutString = new System.Text.StringBuilder();
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < width; i++)
             {
-                mOutString.Append(fields[i]);
+                for (int j = 0; j < height; j++)
+                {
+                    mOutString.Append(fields[i,j]);
+                    if (j < 2)
+                    {
+                        mOutString.Append("|");
+                    }
+                }
 
-                if (i == 2 || i == 5 || i == 8)
-                {
-                    mOutString.Append("\n");
-                }
-                else
-                {
-                    mOutString.Append("|");
-                }
+                mOutString.Append("\n");
+
+               
+                
+                   
+                
             }
             return mOutString.ToString();
         }
 
-        public TicTacToe ApplyMove(int pMove) 
+        public TicTacToe ApplyMove(Move pMove) 
         {
             TicTacToe mTicTacToe = new TicTacToe();
             if (actPlayer == Field.CROSS)
@@ -186,12 +174,16 @@ namespace TicTacToe_Solution
                 mTicTacToe.actPlayer = Field.CROSS;
             }
 
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < width; i++)
             {
-                mTicTacToe.fields[i] = fields[i];
+                for (int j = 0; j < height; j++)
+                {
+                    mTicTacToe.fields[i,j] = fields[i,j];
+                }
+                
             }
 
-            mTicTacToe.fields[pMove] = actPlayer;
+            mTicTacToe.fields[pMove.GetX(), pMove.GetY()] = actPlayer;
 
             return mTicTacToe;
 

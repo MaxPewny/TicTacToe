@@ -6,35 +6,47 @@ namespace TicTacToe_Solution
 {
     public class ConsoleUI
     {
-        private TicTacToe status;
+        private IGame status;
 
-        public ConsoleUI(TicTacToe pStatus) 
+        private IAi ai;
+
+        public ConsoleUI(IGame pStatus, IAi pAi) 
         {
             status = pStatus;
+            ai = pAi;
         }
 
-        private bool ApplyTurn(int[] pMoves) 
+        private bool ApplyTurn(IList<Move> pMoves) 
         {
-            int mMove = Int32.Parse(Console.ReadLine());
-            for (int i = 0; i < pMoves.Length; i++)
+            if (status.GetActPlayer() == Field.CROSS)
             {
-                if (pMoves[i] == mMove)
+                int mMove = Int32.Parse(Console.ReadLine());
+                if (mMove >= 0 && mMove < pMoves.Count)
                 {
-                    status = status.ApplyMove(mMove);
+                    status = status.ApplyMove(pMoves[mMove]);
                     return true;
                 }
+                else 
+                {
+                    return false;
+                }
             }
-            return false;
+            else
+            {
+                status = status.ApplyMove(ai.SelectMove(status));
+                return true;
+            }
+            
         }
 
         public void PlayTurn() 
         {
             bool mMatch = false;
-            int[] mMoves = status.GetMoves();
+            IList<Move> mMoves = status.GetMoves();
             Console.WriteLine(status.OutputToString());
-            for (int i = 0; i < mMoves.Length; i++)
+            for (int i = 0; i < mMoves.Count; i++)
             {
-                Console.Write(mMoves[i] + " | ");
+                Console.Write( i + ": " + mMoves[i].GetX() + "," + mMoves[i].GetY() + " | ");
                 //Console.Write("\n");
             }
             Console.WriteLine(status.GetActPlayer().ToString());
@@ -42,6 +54,7 @@ namespace TicTacToe_Solution
             {
                 mMatch = ApplyTurn(mMoves);
             }
+            Console.WriteLine("______________________________________________________");
         }
 
         public void Play() 
@@ -53,14 +66,17 @@ namespace TicTacToe_Solution
 
             if (status.GetWinner() == Winner.CROSS)
             {
+                Console.WriteLine(status.OutputToString());
                 Console.WriteLine("Cross won the game");
             }
             if (status.GetWinner() == Winner.CIRCLE)
             {
+                Console.WriteLine(status.OutputToString());
                 Console.WriteLine("Circle won the game");
             }
             if (status.GetWinner() == Winner.REMIS) 
             {
+                Console.WriteLine(status.OutputToString());
                 Console.WriteLine("the game ended in a Draw");
             }
         }

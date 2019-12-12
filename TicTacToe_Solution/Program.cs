@@ -7,7 +7,8 @@ namespace TicTacToe_Solution
         static void Main(string[] args)
         {
             TicTacToe mTicTacToe = new TicTacToe();
-            ConsoleUI mUI = new ConsoleUI(mTicTacToe);
+            RandomAI mRandomAI = new RandomAI();
+            ConsoleUI mUI = new ConsoleUI(mTicTacToe, mRandomAI);
             mUI.Play();
         }
     }

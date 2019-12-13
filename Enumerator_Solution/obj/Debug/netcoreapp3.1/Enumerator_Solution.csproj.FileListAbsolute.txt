@@ -1,0 +1,11 @@
+C:\Users\Maximilian.Pewny\Documents\TicTacToe\Enumerator_Solution\obj\Debug\netcoreapp3.1\Enumerator_Solution.csprojAssemblyReference.cache
+C:\Users\Maximilian.Pewny\Documents\TicTacToe\Enumerator_Solution\obj\Debug\netcoreapp3.1\Enumerator_Solution.AssemblyInfoInputs.cache
+C:\Users\Maximilian.Pewny\Documents\TicTacToe\Enumerator_Solution\obj\Debug\netcoreapp3.1\Enumerator_Solution.AssemblyInfo.cs
+C:\Users\Maximilian.Pewny\Documents\TicTacToe\Enumerator_Solution\bin\Debug\netcoreapp3.1\Enumerator_Solution.exe
+C:\Users\Maximilian.Pewny\Documents\TicTacToe\Enumerator_Solution\bin\Debug\netcoreapp3.1\Enumerator_Solution.deps.json
+C:\Users\Maximilian.Pewny\Documents\TicTacToe\Enumerator_Solution\bin\Debug\netcoreapp3.1\Enumerator_Solution.runtimeconfig.json
+C:\Users\Maximilian.Pewny\Documents\TicTacToe\Enumerator_Solution\bin\Debug\netcoreapp3.1\Enumerator_Solution.runtimeconfig.dev.json
+C:\Users\Maximilian.Pewny\Documents\TicTacToe\Enumerator_Solution\bin\Debug\netcoreapp3.1\Enumerator_Solution.dll
+C:\Users\Maximilian.Pewny\Documents\TicTacToe\Enumerator_Solution\bin\Debug\netcoreapp3.1\Enumerator_Solution.pdb
+C:\Users\Maximilian.Pewny\Documents\TicTacToe\Enumerator_Solution\obj\Debug\netcoreapp3.1\Enumerator_Solution.dll
+C:\Users\Maximilian.Pewny\Documents\TicTacToe\Enumerator_Solution\obj\Debug\netcoreapp3.1\Enumerator_Solution.pdb

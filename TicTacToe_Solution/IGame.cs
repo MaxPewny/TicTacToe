@@ -10,7 +10,7 @@ namespace TicTacToe_Solution
 
         Field GetActPlayer();
 
-        IList<Move> GetMoves();
+        IEnumerable<Move> GetMoves();
 
         String OutputToString();
 

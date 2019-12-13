@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace TicTacToe_Solution
 {
@@ -42,11 +43,11 @@ namespace TicTacToe_Solution
         public void PlayTurn() 
         {
             bool mMatch = false;
-            IList<Move> mMoves = status.GetMoves();
+            IList<Move> mMoves = status.GetMoves().ToList();
             Console.WriteLine(status.OutputToString());
             for (int i = 0; i < mMoves.Count; i++)
             {
-                Console.Write( i + ": " + mMoves[i].GetX() + "," + mMoves[i].GetY() + " | ");
+                Console.Write( i + ": " + mMoves[i].x + "," + mMoves[i].y + " | ");
                 //Console.Write("\n");
             }
             Console.WriteLine(status.GetActPlayer().ToString());

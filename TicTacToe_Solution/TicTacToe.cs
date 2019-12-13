@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace TicTacToe_Solution
@@ -13,6 +14,12 @@ namespace TicTacToe_Solution
 
         private Field actPlayer = Field.CROSS;
 
+        public Field this[Move indexer] 
+        {
+            get { return fields[indexer.x, indexer.y]; }
+            set { fields[indexer.x, indexer.y] = value; }
+        }
+
         public TicTacToe() 
         {
             for (int i = 0; i < width; i++)
@@ -25,56 +32,45 @@ namespace TicTacToe_Solution
             }
         }
 
-        /*private int CheckMoves() 
+ 
+        private IEnumerable<IEnumerable<Move>> GetRows()
         {
+            for (int i = 0; i < height; i++)
+            {
+                yield return GetLine(new Move(0,i), new Move(1, i), new Move(2, i));
+            }
         }
-        private Winner CheckHorizontal()
+        private IEnumerable<IEnumerable<Move>> GetColumns()
         {
+            for (int i = 0; i < width; i++)
+            {
+                yield return GetLine(new Move(i, 0), new Move(i, 1), new Move(i, 2));
+            }
         }
-        private Winner CheckVertical()
+        private IEnumerable<IEnumerable<Move>> GetDiagonals() 
         {
+            yield return GetLine(new Move(0, 0), new Move(1, 1), new Move(2, 2));
+            yield return GetLine(new Move(0, 2), new Move(1, 1), new Move(2, 0));
         }
-        private Winner CheckDiagonal() 
-        {
-        }*/
 
-        public Winner GetWinner() 
+        private IEnumerable<Move> GetLine(Move pMove1, Move pMove2, Move pMove3) 
+        {
+            yield return pMove1;
+            yield return pMove2;
+            yield return pMove3;
+        }
+
+        public Winner GetWinner()
         {
             Field mWinner = Field.CROSS;
 
             for (int i = 0; i < 2; i++)
             {
-                for (int j = 0; j < height; j++)
-                {
-                    if (fields[j,0] == mWinner && fields[j,1] == mWinner && fields[j,2] == mWinner)
-                    {
-                        if (mWinner == Field.CROSS)
-                        {
-                            return Winner.CROSS;
-                        }
-                        else
-                        {
-                            return Winner.CIRCLE;
-                        }
-                    }
-                }
-
-                for (int j = 0; j < width; j++)
-                {
-                    if (fields[0,j] == mWinner && fields[1,j] == mWinner && fields[2,j] == mWinner)
-                    {
-                        if (mWinner == Field.CROSS)
-                        {
-                            return Winner.CROSS;
-                        }
-                        else
-                        {
-                            return Winner.CIRCLE;
-                        }
-                    }
-                }
-
-                if (fields[0,0] == mWinner && fields[1,1] == mWinner && fields[2,2] == mWinner)
+                if (GetRows()
+                    .Concat(GetColumns())
+                    .Concat(GetDiagonals())
+                    .Any(line => line.All(field => this[field] == mWinner))
+                    )
                 {
                     if (mWinner == Field.CROSS)
                     {
@@ -85,23 +81,9 @@ namespace TicTacToe_Solution
                         return Winner.CIRCLE;
                     }
                 }
-
-                if (fields[2,0] == mWinner && fields[1,1] == mWinner && fields[0,2] == mWinner)
-                {
-                    if (mWinner == Field.CROSS)
-                    {
-                        return Winner.CROSS;
-                    }
-                    else
-                    {
-                        return Winner.CIRCLE;
-                    }
-                }
-
-                mWinner = Field.CROSS;
             }
 
-            if (GetMoves().Count > 0)
+            if (GetMoves().Count() > 0)
             {
                 return Winner.NO_WINNER;
             }
@@ -116,26 +98,19 @@ namespace TicTacToe_Solution
             return actPlayer;
         }
 
-        public IList<Move> GetMoves() 
+        public IEnumerable<Move> GetMoves() 
         {
-            IList<Move> mMove = new List<Move>();
-
             for (int i = 0; i < width; i++)
             {
                 for (int j = 0; j < height; j++)
                 {
                     if (fields[i,j] == Field.EMPTY)
                     {
-                        mMove.Add(new Move(i,j));
+                        yield return new Move(i,j);
                     
                     }
-
                 }
-            }
-
-            return mMove;
-
-            
+            }            
         }
 
         public String OutputToString()
@@ -183,7 +158,7 @@ namespace TicTacToe_Solution
                 
             }
 
-            mTicTacToe.fields[pMove.GetX(), pMove.GetY()] = actPlayer;
+            mTicTacToe[pMove] = actPlayer;
 
             return mTicTacToe;
 

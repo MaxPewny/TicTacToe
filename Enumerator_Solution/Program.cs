@@ -13,16 +13,47 @@ namespace Enumerator_Solution
             }
         }
 
-        public static IEnumerable<string> Every2nd(this IEnumerable<string> pEnumerable) 
+        public static IEnumerable<string> Every2nd(this IEnumerable<string> pEnumerable)
         {
-            IEnumerable<string> mEnumerable = new MyEnumerable(pEnumerable);
-            return mEnumerable;
+            bool second = false;
+
+            foreach (var l in pEnumerable)
+            {
+                if (second)
+                {
+                    yield return l;
+                }
+                second = !second;
+            }
         }
 
         public static IEnumerable<string> MyTake(this IEnumerable<string> pEnumerable, int pX)
         {
-            IEnumerable<string> mEnumerable = new MyTakeEnumerable(pEnumerable, pX);
-            return mEnumerable;
+            int count = 0;
+
+            foreach (var l in pEnumerable)
+            {
+                if (count >= pX)
+                {
+                    yield break;
+                }
+                yield return l;
+                ++count;
+            }
         }
+
+        //public static IEnumerable<string> Every2nd(this IEnumerable<string> pEnumerable) 
+        //{
+        //    IEnumerable<string> mEnumerable = new MyEnumerable(pEnumerable);
+        //    return mEnumerable;
+        //}
+
+        //public static IEnumerable<string> MyTake(this IEnumerable<string> pEnumerable, int pX)
+        //{
+        //    IEnumerable<string> mEnumerable = new MyTakeEnumerable(pEnumerable, pX);
+        //    return mEnumerable;
+        //}
+
+
     }
 }
